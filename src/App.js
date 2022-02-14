@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Btn } from "./components/Btn/Btn";
 import { Div } from "./components/Div/Div";
-import { Input } from "./components/Input/Input";
+// import { Input } from "./components/Input/Input";
 import { List } from "./components/List/List";
 import { Title } from "./components/Title/Title";
 
@@ -19,23 +19,31 @@ To Fix:
 
 */
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
+
+    // create a ref to store the textInput DOM element
+    this.textInput = React.createRef();
+    this.add = this.add.bind(this);
+
     this.state = {
-      input_value: null
+      input_value: null,
     };
   }
 
   add = () => {
-    var inputValue = document.getElementById("input").value;
+    console.log(this.textInput.current.value);
+
+    // var inputValue = document.getElementById("input").value;
+    var inputValue = this.textInput.current.value;
 
     if (inputValue === "") {
       alert("You must write something");
     } else {
-      this.setState(()=>({
-        input_value: inputValue
-      }))
+      this.setState(() => ({
+        input_value: inputValue,
+      }));
     }
   };
 
@@ -44,15 +52,12 @@ class App extends Component {
       <>
         <Div className="header">
           <Title text="My To Do List" />
-          <Input text="New Task ..." />
-          <Btn onClick={this.add} className={'addBtn'} input_text={'Add'} />
+          <input type="text" ref={this.textInput} placeholder="New Task ..." />
+          <Btn onClick={this.add} className={"addBtn"} input_text={"Add"} />
         </Div>
 
         <List newtask={this.state.input_value} />
-
       </>
     );
   }
 }
-
-export default App;

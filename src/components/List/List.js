@@ -18,6 +18,7 @@ export const List = ({ newtask }) => {
     },
   ]);
 
+
   // console.log(tasks[0].task);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export const List = ({ newtask }) => {
       } else {
         return previousState;
       }
-    });
+    })
   }, [newtask]);
 
   // Event + parameter: https://stackoverflow.com/a/42597619
