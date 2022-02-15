@@ -38,24 +38,22 @@ export const List = ({ newtask }) => {
   // Event + parameter: https://stackoverflow.com/a/42597619
   const newclickhandler = (e, index) => {
     //e.currentTarget.classList.toggle("checked");
-    console.log("task " + index + " is clicked");
+    //console.log("task " + index + " is clicked");
     
     // This can be done beteer. Reassigning output to a new array.
     // Why not rendering again when using the tasks state.
-    var z = []
+    //var z = []
 
-    tasks.filter((nta, i) => {
-      if (i == index) {
-        nta.checked = !nta.checked;
-        z[i] = nta
+    //const newTasks = 
+    //console.log(z);
+    //console.log(tasks);
+    setTasks(tasks.map((nta, i) => {
+      if (i === index) {
+        //nta.checked = !nta.checked;
+        return {...nta,checked:!nta.checked}
       }
-      else{
-        z[i] = nta
-      }
-    });
-    console.log(z);
-    console.log(tasks);
-    setTasks(z);
+      return nta;
+    }));
   };
 
   function newclose(e, indd) {

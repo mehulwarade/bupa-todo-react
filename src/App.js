@@ -13,7 +13,6 @@ Test Cases:
 
 To Fix:
 1. X mark gets strike through too.
-2. The ticked tasks come back again when deleted tasks before it.
 3. Key is not needed.
 4. 
 
@@ -52,6 +51,7 @@ export default class App extends Component {
       <>
         <Div className="header">
           <Title text="My To Do List" />
+          {/* send setstate to inptu component */}
           <input type="text" ref={this.textInput} placeholder="New Task ..." />
           <Btn onClick={this.add} className={"addBtn"} input_text={"Add"} />
         </Div>
