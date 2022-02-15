@@ -18,9 +18,6 @@ export const List = ({ newtask }) => {
     },
   ]);
 
-
-  // console.log(tasks[0].task);
-
   useEffect(() => {
     setTasks((previousState) => {
       if (newtask != null) {
@@ -36,43 +33,30 @@ export const List = ({ newtask }) => {
   }, [newtask]);
 
   // Event + parameter: https://stackoverflow.com/a/42597619
-  const newclickhandler = (e, index) => {
-    //e.currentTarget.classList.toggle("checked");
-    //console.log("task " + index + " is clicked");
-    
-    // This can be done beteer. Reassigning output to a new array.
-    // Why not rendering again when using the tasks state.
-    //var z = []
-
-    //const newTasks = 
-    //console.log(z);
-    //console.log(tasks);
-    setTasks(tasks.map((nta, i) => {
+  const newclickhandler = (index) => {
+    setTasks(tasks.map((eachTask, i) => {
       if (i === index) {
-        //nta.checked = !nta.checked;
-        return {...nta,checked:!nta.checked}
+        return {...eachTask,checked:!eachTask.checked}
       }
-      return nta;
+      return eachTask;
     }));
   };
 
-  function newclose(e, indd) {
-    console.log("task " + indd + " has been deleted");
-    setTasks(tasks.filter((ntb, i) => i !== indd));
-    // To stop the code from dropping further // Ref: https://stackoverflow.com/q/50829705
+  function newclose(e, indexToClose) {
+    console.log("task " + indexToClose + " has been deleted");
+    setTasks(tasks.filter((eachTask, eachIndex) => eachIndex !== indexToClose));
     e.stopPropagation();
   }
 
-
   return (
     <ul id="list">
-      {tasks.map((nt, index) => (
+      {tasks.map((eachTask, index) => (
         <li
-          className={nt.checked ? "checked" : ""}
-          onClick={(e) => newclickhandler(e, index)}
-          key={`${nt.task}-${index}`}
+          className={eachTask.checked ? "checked" : ""}
+          onClick={() => newclickhandler(index)}
+          key={`${eachTask.task}-${index}`}
         >
-          {nt.task}
+          {eachTask.task}
           <Btn
             onClick={(e) => newclose(e, index)}
             className="xButton"
@@ -80,7 +64,6 @@ export const List = ({ newtask }) => {
           />
         </li>
       ))}
-      {/* {tasks.map((nt) => nt.task)} */}
     </ul>
   );
 };
