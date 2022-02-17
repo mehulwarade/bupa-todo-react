@@ -4,7 +4,7 @@ import './index.css';
 export const Btn = (props) => {
 
     return (
-        <button onClick={props.onClick} className={props.className}>{props.input_text}</button>
+        <button onClick={props.onClick} className={props.className} test-enzyme='addButton'>{props.input_text}</button>
     );
 
 }

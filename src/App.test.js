@@ -24,7 +24,7 @@ beforeEach(() => {
 
 describe('Render Components', () => {
 
-    it('should render header just 1 without errors', () => {
+    it('should render 1 header without errors', () => {
 
         const headWrapper = MainApp.find('.header');
         // Check how many div with the className .header are there in the DOM. Just 1 in our case.
@@ -32,12 +32,12 @@ describe('Render Components', () => {
         // expect(headWrapper.length).toBe(2); // Fail
     });
 
-    it('should contain an add button', () => {
+    it('should contain 1 add button', () => {
         const btnWrapper = MainApp.find('.addBtn');
         expect(btnWrapper.length).toBe(1); // Pass
     })
 
-    it('should contain an add task input text box', () => {
+    it('should contain 1 input text box', () => {
         // Its very useful to add a seperate tag just for testing so that it cannot be changed by any other develoepr.
         const InputWrapper = findByCustomTag(MainApp, 'input-task');
         expect(InputWrapper.length).toBe(1); // Pass
