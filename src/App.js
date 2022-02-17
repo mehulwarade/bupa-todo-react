@@ -46,7 +46,7 @@ export default class App extends Component {
       <>
         <Div className="header">
           <Title text="My To Do List" />
-          <input type="text" ref={this.textInput} placeholder="New Task ..." />
+          <input type="text" ref={this.textInput} placeholder="New Task ..."></input>
           <Btn onClick={this.add} className={"addBtn"} input_text={"Add"} />
         </Div>
 
