@@ -19,7 +19,8 @@ export const List = ({ newtask }) => {
   ]);
 
   useEffect(() => {
-    setTasks((previousState) => {
+    setTasks((previousState) => {    
+      //console.log('task ' + newtask + ' has been created!');
       if (newtask != null) {
         // for double same values
         if (previousState.includes(newtask)) {
@@ -43,9 +44,13 @@ export const List = ({ newtask }) => {
   };
 
   function newclose(e, indexToClose) {
-    console.log("task " + indexToClose + " has been deleted");
+    //console.log("task " + indexToClose + " has been deleted");
     setTasks(tasks.filter((eachTask, eachIndex) => eachIndex !== indexToClose));
     e.stopPropagation();
+  }
+  const fakeEvent = {
+    // For testing. -> https://github.com/enzymejs/enzyme/issues/323#issuecomment-209971872
+    stopPropagation: () => false
   }
 
   return (
@@ -55,12 +60,14 @@ export const List = ({ newtask }) => {
           className={eachTask.checked ? "checked" : ""}
           onClick={() => newclickhandler(index)}
           key={`${eachTask.task}-${index}`}
+          test-enzyme='list-tasks'
         >
           {eachTask.task}
           <Btn
-            onClick={(e) => newclose(e, index)}
+            onClick={(e = fakeEvent) => newclose(e, index)}
             className="xButton"
             input_text={"\u00D7"}
+            enzyme_test={"xBtn"}
           />
         </li>
       ))}
