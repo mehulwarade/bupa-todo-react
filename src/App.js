@@ -26,28 +26,30 @@ export default class App extends Component {
     this.state = {
       input_value: null,
     };
+
+    //console.log('consutructor - App');
   }
 
   add = () => {
-    console.log(this.textInput.current.value);
-    var inputValue = this.textInput.current.value;
+    //console.log('Add - App');
 
-    if (inputValue === "") {
+    if (this.textInput.current == null || this.textInput.current.value === "" ) {
       alert("You must write something");
     } else {
       this.setState(() => ({
-        input_value: inputValue,
+        input_value: this.textInput.current.value,
       }));
     }
   };
 
   render() {
+    //console.log('render - App');
     return (
       <>
         <Div className="header">
           <Title text="My To Do List" />
-          <input type="text" ref={this.textInput} test-enzyme='input-task' placeholder="New Task ..." />
-          <Btn onClick={this.add} className={"addBtn"} input_text={"Add"} />
+          <input type="text" ref={this.textInput} test-enzyme={'input-task'} placeholder="New Task ..." ></input>
+          <Btn onClick={this.add} className={"addBtn"} input_text={"Add"} enzyme_test={"add-button"} /> 
         </Div>
 
         <List newtask={this.state.input_value} />

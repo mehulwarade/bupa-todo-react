@@ -3,8 +3,10 @@ import './index.css';
 
 export const Btn = (props) => {
 
+    const {onClick, className, input_text, enzyme_test} = props;
+
     return (
-        <button onClick={props.onClick} className={props.className} test-enzyme='addButton'>{props.input_text}</button>
+        <button onClick={onClick} className={className} test-enzyme={enzyme_test}>{input_text}</button>
     );
 
 }
