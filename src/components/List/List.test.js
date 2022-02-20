@@ -23,15 +23,10 @@ describe('click event should work', () => {
     it('should delete the task on close click', () => {
         const wrapper = shallow(<List newtask = '' />)
         const xbutton_list = wrapper.find('.xButton');
-        //or
-        //const xbutton = wrapper.find(`[enzyme_test='xBtn']`)
-        const xbut = findByCustomTag(wrapper, 'xBtn');
+    
         const list_of_tasks = findByCustomTag(wrapper, 'list-tasks');
 
         xbutton_list.at(0).simulate('click');
-        // or the same can be achieved by the following:
-        //wrapper.find('li').at(1).find('Btn').simulate('click');
-
         const new_list_of_tasks = findByCustomTag(wrapper, 'list-tasks');
 
         expect(list_of_tasks.length - new_list_of_tasks.length).toBe(1);
